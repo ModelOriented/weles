@@ -1,0 +1,330 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.5
+-- Dumped by pg_dump version 11.5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: audits; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.audits (
+    model_name character varying(50) NOT NULL,
+    dataset_id character varying(64) NOT NULL,
+    measure character varying(10) NOT NULL,
+    value double precision,
+    user_name character varying(50)
+);
+
+
+ALTER TABLE public.audits OWNER TO postgres;
+
+--
+-- Name: datasets; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.datasets (
+    dataset_id character varying(64) NOT NULL,
+    number_of_rows integer,
+    number_of_columns integer,
+    "timestamp" timestamp without time zone,
+    owner character varying(50),
+    missing integer
+);
+
+
+ALTER TABLE public.datasets OWNER TO postgres;
+
+--
+-- Name: datasets_aliases; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.datasets_aliases (
+    dataset_id character varying(64) NOT NULL,
+    name character varying(50) NOT NULL,
+    description text,
+    "timestamp" timestamp without time zone,
+    owner character varying(50)
+);
+
+
+ALTER TABLE public.datasets_aliases OWNER TO postgres;
+
+--
+-- Name: features; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.features (
+    dataset_id character varying(64) NOT NULL,
+    id integer NOT NULL,
+    name character varying(50),
+    unique_val integer,
+    missing integer
+);
+
+
+ALTER TABLE public.features OWNER TO postgres;
+
+--
+-- Name: models; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.models (
+    model_name character varying(50) NOT NULL,
+    hash character varying(64),
+    train_data_id character varying(64),
+    "timestamp" timestamp without time zone,
+    system character varying(50),
+    system_release character varying(50),
+    distribution character varying(50),
+    distribution_version character varying(50),
+    language character varying(50),
+    language_version character varying(50),
+    architecture character varying(50),
+    processor character varying(50),
+    description text,
+    owner character varying(50),
+    target character varying(50)
+);
+
+
+ALTER TABLE public.models OWNER TO postgres;
+
+--
+-- Name: tags; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tags (
+    model_name character varying(50) NOT NULL,
+    tag character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.tags OWNER TO postgres;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    user_name character varying(50) NOT NULL,
+    password character varying(64) NOT NULL,
+    mail character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Data for Name: audits; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.audits (model_name, dataset_id, measure, value, user_name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: datasets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.datasets (dataset_id, number_of_rows, number_of_columns, "timestamp", owner, missing) FROM stdin;
+\.
+
+
+--
+-- Data for Name: datasets_aliases; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.datasets_aliases (dataset_id, name, description, "timestamp", owner) FROM stdin;
+\.
+
+
+--
+-- Data for Name: features; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.features (dataset_id, id, name, unique_val, missing) FROM stdin;
+\.
+
+
+--
+-- Data for Name: models; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.models (model_name, hash, train_data_id, "timestamp", system, system_release, distribution, distribution_version, language, language_version, architecture, processor, description, owner, target) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tags (model_name, tag) FROM stdin;
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (user_name, password, mail) FROM stdin;
+\.
+
+
+--
+-- Name: audits audits_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.audits
+    ADD CONSTRAINT audits_pkey PRIMARY KEY (model_name, dataset_id, measure);
+
+
+--
+-- Name: datasets_aliases datasets_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.datasets_aliases
+    ADD CONSTRAINT datasets_aliases_pkey PRIMARY KEY (dataset_id, name);
+
+
+--
+-- Name: datasets datasets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.datasets
+    ADD CONSTRAINT datasets_pkey PRIMARY KEY (dataset_id);
+
+
+--
+-- Name: features features_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.features
+    ADD CONSTRAINT features_pkey PRIMARY KEY (dataset_id, id);
+
+
+--
+-- Name: models models_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.models
+    ADD CONSTRAINT models_pkey PRIMARY KEY (model_name);
+
+
+--
+-- Name: tags tags_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tags
+    ADD CONSTRAINT tags_pkey PRIMARY KEY (model_name, tag);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (user_name);
+
+
+--
+-- Name: features features_datasets; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.features
+    ADD CONSTRAINT features_datasets FOREIGN KEY (dataset_id) REFERENCES public.datasets(dataset_id);
+
+
+--
+-- Name: datasets_aliases fk_alias_data; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.datasets_aliases
+    ADD CONSTRAINT fk_alias_data FOREIGN KEY (dataset_id) REFERENCES public.datasets(dataset_id);
+
+
+--
+-- Name: models model_data; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.models
+    ADD CONSTRAINT model_data FOREIGN KEY (train_data_id) REFERENCES public.datasets(dataset_id);
+
+
+--
+-- Name: tags tags_models; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tags
+    ADD CONSTRAINT tags_models FOREIGN KEY (model_name) REFERENCES public.models(model_name);
+
+
+--
+-- Name: TABLE audits; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT ON TABLE public.audits TO basic;
+
+
+--
+-- Name: TABLE datasets; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT ON TABLE public.datasets TO basic;
+
+
+--
+-- Name: TABLE datasets_aliases; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT ON TABLE public.datasets_aliases TO basic;
+
+
+--
+-- Name: TABLE features; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT ON TABLE public.features TO basic;
+
+
+--
+-- Name: TABLE models; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT ON TABLE public.models TO basic;
+
+
+--
+-- Name: TABLE tags; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT ON TABLE public.tags TO basic;
+
+
+--
+-- Name: TABLE users; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT ON TABLE public.users TO basic;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
