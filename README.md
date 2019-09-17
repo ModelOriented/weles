@@ -17,13 +17,13 @@ During the development **weles** is only accessible via MINI network. However yo
 ## Python
 
 ```
-git clone https://github.com/WojciechKretowicz/weles.git 
+git clone https://github.com/ModelOriented/weles.git 
 pip install weles/python
 ```
 ## R
 
 ```
-devtools::install_github("WojciechKretowicz/weles/r")
+devtools::install_github("ModelOriented/weles/r")
 ```
 
 # Usage in Python
