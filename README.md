@@ -26,7 +26,7 @@ pip install weles/python
 devtools::install_github("ModelOriented/weles/r")
 ```
 
-# Usage in Python
+# Simple usage in Python
 
 ## Creating an account
 To be able to upload your model you need to have an account on **weles**. So here is what you need to do:
@@ -129,7 +129,7 @@ models.search(row = '>1000;<10000;', column='=12;', user='Example user', tags = 
 
 You will get list of all models satisfying your restrictions.
 
-# Usage in R
+# Simple usage in R
 
 ## Creating an account
 To upload your model you need to create your account.
