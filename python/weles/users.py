@@ -14,14 +14,12 @@ from io import StringIO
 from datetime import datetime
 from getpass import getpass
 
-def create(mail):
+def create():
 	"""
 	Function create_userFunction creates new user in the **weles** base.
 
 	Parameters
 	----------
-	mail : string
-		your mail
 
 	Returns
 	-------
@@ -36,9 +34,10 @@ def create(mail):
 		-> password:
 	"""
 
+	mail = input('mail: ')
 	user_name = input('user: ')
 	password = getpass('password: ')
-	password2 = getpass('password: ')
+	password2 = getpass('repeat password: ')
 
 	if password != password2:
 		raise ValueError('You entered two different passwords')

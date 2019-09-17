@@ -3,7 +3,6 @@
 #' @description
 #' This function is used to create an user account. You need this to have an access to all features in weles.
 #'
-#' @param mail your mail, character
 #'
 #' @return Information if creating an account was successful.
 #'
@@ -19,11 +18,12 @@
 #' }
 #'
 #' @export
-users_create = function(mail) {
+users_create = function() {
 
+    mail = readline('mail: ')
 	user_name = readline('user: ')
 	password = getPass::getPass('password: ')
-	password2 = getPass::getPass('password: ')
+	password2 = getPass::getPass('repeat password: ')
 
 	stopifnot(password == password2)
 

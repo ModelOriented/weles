@@ -31,8 +31,6 @@ options("buildtools.check" = function(x) TRUE)
 
 # installing packages
 for(i in 1:nrow(req)) {
+    write.table(list(i, as.character(req[i,1])), paste0('../../../tmp/status_', t, '.txt'), row.names=FALSE, col.names=FALSE, sep=',')
 	install_version(as.character(req[i,1]), version = as.character(req[i,2]))
-
-	write.table(list(i, as.character(req[i,1])), paste0('../../../tmp/status_', t, '.txt'), row.names=FALSE, col.names=FALSE, sep=',')
-
 }
