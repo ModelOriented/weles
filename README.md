@@ -25,3 +25,13 @@ pip install weles/python
 ```
 devtools::install_github("ModelOriented/weles/r")
 ```
+
+# Usage
+
+## Python
+
+[Usage in Python](https://github.com/ModelOriented/weles/blob/master/python/README.md)
+
+## R
+
+[Usage in R](https://github.com/ModelOriented/weles/blob/master/r/README.md)
