@@ -34,7 +34,7 @@ To be able to upload your model you need to have an account on **weles**. So her
 ```
 from weles import users
 
-users.create('Example user', 'example password', 'example_mail@gmail.com')
+users.create()
 ```
 
 You will receive information if your account was created correctly.
@@ -76,10 +76,16 @@ Now we are ready to push our model to the base. Its name has to be unique in the
 ```
 from weles import models
 
-models.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], train_data_to_upload, 'example_data', 'This is an example dataset', 'requirements.txt', 'Example user', 'example password')
+models.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], train_data_to_upload, 'example_data', 'This is an example dataset', 'requirements.txt')
 ```
 
-In this moment *model* is being uploaded to the **weles**. If requested environment had not been already created in the **weles**, it will be created. During this time your Python sesion will be suspended. You will get the message if the uploading was successful.
+In this moment *model* is being uploaded to the **weles**. If requested environment had not been already created in the **weles**, it will be created. You do not have to wait for its creation. You will receive special *id*, that you can pass to the function *status* to check the progress of the uploading.
+
+### Status
+
+```
+models.status(id)
+```
 
 ### Summary
 
@@ -129,6 +135,14 @@ models.search(row = '>1000;<10000;', column='=12;', user='Example user', tags = 
 
 You will get list of all models satisfying your restrictions.
 
+## Testing model
+
+You can also test already uploaded model on some new data.
+
+```
+models.audit('model_name', 'acc', new_data, 'target_column', 'new_data', 'new data for testing')
+```
+
 # Simple usage in R
 
 ## Creating an account
@@ -137,7 +151,7 @@ To upload your model you need to create your account.
 ```
 library(weles)
 
-user_create('Example user', 'example password', 'example_mail@gmail.com')
+users_create()
 ```
 
 In response you will get information if your account was created succesfully.
@@ -159,10 +173,16 @@ To upload the model to the base you need to import client package and pass class
 ```
 library('weles')
 
-model_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), iris, 'example_data', 'This is an example data', 'Example user', 'example_password')
+models_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), iris, 'example_data', 'This is an example data', 'Example user', 'example_password')
 ```
 
-In this moment *model* is being uploaded to the **weles**. If requested environment had not been already created in the **weles**, it will be created. During this time your R sesion will be suspended.
+In this moment *model* is being uploaded to the **weles**. If requested environment had not been already created in the **weles**, it will be created. You will receive special *id*, that you can pass to the function *status* to check the progress of the uploading.
+
+### Status
+
+```
+models_status(id)
+```
 
 ### Summary
 
