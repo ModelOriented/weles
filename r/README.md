@@ -31,6 +31,7 @@ library('weles')
 models_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), iris, 'example_data', 'This is an example data')
 models_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), data_hash)
 models_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), data_hash, 'example_data', 'This is an example data')
+models_upload(path_to_model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), path_to_data, 'example_data', 'This is an example data')
 ```
 
 In this moment *model* is being uploaded to the **weles**. If requested environment had not been already created in the **weles**, it will be created. You will receive special *id*, that you can pass to the function *status* to check the progress of the uploading.
@@ -105,4 +106,20 @@ You can also test already uploaded model.
 ```
 models_audit('model_name', 'acc', 'target_column', new_data, 'new_test_data', 'new data for testing')
 models_audit('model_name', 'mse', 'target_column', data_hash)
+```
+## Uploading data
+
+You can upload data alone of course.
+
+```
+datasets_upload(data, 'name_of_the_data', 'short description of the data')
+```
+
+## Getting data
+
+```
+datasets_get(data_hash)
+datasets_head(data_hash)
+
+dataset_get(models_info('example_model')$data$dataset_id)
 ```
