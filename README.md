@@ -14,6 +14,10 @@ During the development **weles** is only accessible via MINI network. However yo
 
 ![Schema](workflow.png)
 
+## Short description
+
+[Short description](Description.html)
+
 # Installation
 
 ## Client packages
