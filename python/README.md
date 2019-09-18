@@ -49,6 +49,9 @@ Now we are ready to push our model to the base. Its name has to be unique in the
 from weles import models
 
 models.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], train_data_to_upload, 'example_data', 'This is an example dataset', 'requirements.txt')
+models.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], data_hash, None, None, 'requirements.txt')
+models.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], data_hash, 'example_data', 'This is an example dataset', 'requirements.txt')
+models.upload(path_to_model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], data_hash, None, None, 'requirements.txt')
 ```
 
 In this moment *model* is being uploaded to the **weles**. If requested environment had not been already created in the **weles**, it will be created. You do not have to wait for its creation. You will receive special *id*, that you can pass to the function *status* to check the progress of the uploading.
@@ -57,6 +60,7 @@ In this moment *model* is being uploaded to the **weles**. If requested environm
 
 ```
 models.status(id)
+models.status(id, interactive=False)
 ```
 
 ### Summary
@@ -88,6 +92,7 @@ If you want to make a prediction, type:
 from weles import models
 
 models.predict("example_model", data)
+models.predict("example_model", data, prepare_columns=False)
 ```
 
 *"example_model"* is the name of **weles** model, *data* is the data frame with named columns without target column, or path to *.csv* (must contain **/** sign) file or *hash* of already uploaded data.
@@ -116,4 +121,28 @@ You can also test already uploaded model on some new data.
 
 ```
 models.audit('model_name', 'acc', new_data, 'target_column', 'new_data', 'new data for testing')
+models.audit('model_name', 'acc', data_hash, 'target_column')
+models.audit('model_name', 'acc', data_hash, 'target_column', 'new_data', 'new data for testing')
+models.audit('model_name', 'acc', path_to_data, 'target_column', 'new_data', 'new data for testing')
+```
+
+## Uploading data
+
+You can upload data alone of course.
+
+```
+from weles import datasets
+
+datasets.upload(data, 'name_of_the_data', 'short description of the dataset')
+```
+
+## Getting data
+
+Or download dataset from the **weles**
+
+```
+datasets.get(data_hash)
+datasets.head(data_hash)
+
+datasets.get(models.info('example_model')['data']['dataset_id'])
 ```
