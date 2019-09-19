@@ -16,7 +16,7 @@ from getpass import getpass
 
 def create():
 	"""
-	Function create_userFunction creates new user in the **weles** base.
+	Function creates new user in the weles base.
 
 	Parameters
 	----------

@@ -37,10 +37,6 @@ def upload(model, model_name, model_desc, target, tags, train_dataset, train_dat
 		description of the dataset
 	requirements_file : string
 		path to python style requirements file, can be easily obtained by running: "pip freeze > requirements.txt" at your command line
-	user_name : string
-		your user name
-	password : string 
-		your password
 
 	Returns
 	-------
