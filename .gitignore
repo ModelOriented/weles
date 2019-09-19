@@ -1,2 +1,4 @@
 *.idea*
 *__pychache__*
+ModelGovernance/FLASKMODELGOVERNANCE/flaskr/V/
+ModelGovernance/FLASKMODELGOVERNANCE/flaskr/VENV/
