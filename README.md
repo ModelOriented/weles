@@ -20,6 +20,8 @@ During the development **weles** is only accessible via MINI network. However yo
 
 # Installation
 
+If you just want to use **weles** as a client user, you only need to install proper client package. If you want to host the base for yourself, you need to install the base.
+
 ## Client packages
 
 ### Python
