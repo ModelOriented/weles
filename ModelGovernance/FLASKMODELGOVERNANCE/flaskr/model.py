@@ -2,7 +2,6 @@
 
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for, current_app, request
 
-import virtualenv
 from datetime import datetime
 import pickle
 
@@ -217,7 +216,7 @@ def status(task_id):
 
         response = {
             'state': task.state,
-            'status': 'YOU ARE A FAILURE'
+            'status': 'UPLOAD FAILED'
         }
 
     return response
