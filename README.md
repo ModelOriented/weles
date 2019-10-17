@@ -38,6 +38,18 @@ devtools::install_github("ModelOriented/weles/r")
 
 ## Base
 
+### Docker
+
+```
+sudo docker build . -t  weles
+
+sudo docker run --rm -ti -e SECRET_KEY='KEY' -e database_password='PASSWORD' weles
+```
+
+After running your container, you have to change the urls in your client package to point your container.
+
+### Normal installation
+
 [Base installation](https://github.com/ModelOriented/weles/blob/master/ModelGovernance/README.md)
 
 # Usage
