@@ -43,7 +43,7 @@ devtools::install_github("ModelOriented/weles/r")
 ```
 sudo docker build . -t  weles
 
-sudo docker run --rm -ti -e SECRET_KEY='KEY' -e database_password='PASSWORD' weles
+sudo docker run --rm -d -ti -e SECRET_KEY='KEY' -e database_password='PASSWORD' weles
 ```
 
 After running your container, you have to change the urls in your client package to point your container.
