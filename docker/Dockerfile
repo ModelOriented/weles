@@ -2,6 +2,10 @@
 
 FROM ubuntu:18.04 AS system
 
+ARG database_password
+
+RUN echo $database_password
+
 # UPDATE
 
 RUN apt-get update -y && apt-get upgrade -y
@@ -9,6 +13,8 @@ RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install sudo
 
 RUN apt-get install -y python3.7
+
+RUN apt-get install -y zlib1g-dev
 
 # PYTHON VIRTUALENV
 
@@ -41,7 +47,7 @@ RUN apt-get update -y && apt-get upgrade -y
 
 COPY ModelGovernance SERVER/ModelGovernance
 
-RUN sudo service postgresql start && sudo -u postgres psql --command "create database modelmetadata;" && sudo -u postgres psql --command "create role basic;" && sudo -u postgres psql modelmetadata < /SERVER/ModelGovernance/modelmetadata.pgpsql
+RUN sudo service postgresql start && sudo -u postgres psql --command "create database modelmetadata;" && sudo -u postgres psql --command "create user basic with password '$database_password';" && sudo -u postgres psql modelmetadata < /SERVER/ModelGovernance/modelmetadata.pgpsql
 
 ENV FLASK_APP=flaskr
 
