@@ -40,9 +40,11 @@ devtools::install_github("ModelOriented/weles/r")
 
 ### Docker
 
+You should set database_password and SECRET_KEY arguments. Database password is a password of POSTGRESQL user that selects and inserts metadata. SECRET_KEY is a server key.
+
 ```
 # build
-sudo docker build . -t weles --build-arg database_password='PASSWORD'
+sudo docker build weles/docker/ -t weles --build-arg database_password='PASSWORD'
 
 # run
 sudo docker run --rm -ti -e SECRET_KEY='KEY' -e database_password='PASSWORD' weles
