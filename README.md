@@ -51,7 +51,7 @@ You should set database_password and SECRET_KEY arguments. Database password is 
 
 ```
 # build
-sudo docker build . -t weles --build-arg database_password=aaa --build-arg python_interpreter=3.6.8 --build-arg r_interpreter=none
+sudo docker build weles/docker -t weles --build-arg database_password=aaa --build-arg python_interpreter=3.6.8 --build-arg r_interpreter=none
 
 # run
 sudo docker run -ti -e SECRET_KEY='KEY' -e database_password='PASSWORD' weles
