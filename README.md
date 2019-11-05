@@ -40,10 +40,14 @@ devtools::install_github("ModelOriented/weles/r")
 
 ### Docker
 
-```
-sudo docker build . -t  weles
+You should set database_password and SECRET_KEY arguments. Database password is a password of POSTGRESQL user that selects and inserts metadata. SECRET_KEY is a server key.
 
-sudo docker run --rm -d -ti -e SECRET_KEY='KEY' -e database_password='PASSWORD' weles
+```
+# build
+sudo docker build weles/docker/ -t weles --build-arg database_password='PASSWORD'
+
+# run
+sudo docker run --rm -ti -e SECRET_KEY='KEY' -e database_password='PASSWORD' weles
 ```
 
 After running your container, you have to change the urls in your client package to point your container.
