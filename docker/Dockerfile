@@ -3,6 +3,8 @@
 FROM ubuntu:18.04 AS system
 
 ARG database_password
+ARG python_interpreter="all"
+ARG r_interpreter="all"
 
 RUN echo $database_password
 
@@ -10,11 +12,13 @@ RUN echo $database_password
 
 RUN apt-get update -y && apt-get upgrade -y
 
-RUN apt-get install sudo
+RUN apt-get install sudo -y
 
 RUN apt-get install -y python3.7
 
-RUN apt-get install -y zlib1g-dev
+RUN apt-get install -y zlib1g-dev libssl-dev libbz2-dev liblzma-dev libxml2-dev libcurl4-openssl-dev
+
+RUN apt-get update -y && apt-get upgrade -y
 
 # PYTHON VIRTUALENV
 
@@ -64,8 +68,6 @@ RUN apt-get update -y && apt-get upgrade -y
 
 RUN cd /
 
-RUN /bin/bash /SERVER/ModelGovernance/download_all_PYTHON_versions.sh
-
-RUN /bin/bash /SERVER/ModelGovernance/download_all_R_versions.sh
+RUN /bin/bash /SERVER/ModelGovernance/interpreters_installation.sh $python_interpreter $r_interpreter
 
 ENTRYPOINT /bin/bash /SERVER/ModelGovernance/entrypoint.sh
