@@ -27,4 +27,23 @@ To run a server you need to pass `SECRET_KEY` argument. `SECRET_KEY` is a server
 sudo docker run -ti -e SECRET_KEY='KEY' -e database_password=$database_password weles
 ```
 
+## Install new interpreter
+
+You may have running server for a while, however you need a new interpreter. You can use script "download_R.sh" or download_Python.sh" to download new version of interpreter to an existing container. To do so:
+
+```
+# access to the server
+sudo docker exec -ti DOCKER_ID /bin/bash
+
+# choose version of the interpreter
+ver=3.6.1
+
+# then for R simply run
+/bin/bash /SERVER/ModelGovernance/download_R.sh /SERVER/ModelGovernance/FLASKMODELGOVERNANCE/flaskr/interpreters/r/ $ver
+
+# or for Python simply run
+
+/SERVER/ModelGovernance/download_PYTHON.sh /SERVER/ModelGovernance/FLASKMODELGOVERNANCE/flaskr/interpreters/python/ $ver
+```
+
 **After running your container, you have to change the urls in your client package to point your container.**
