@@ -1,3 +1,5 @@
+cd /
+
 prefix='https://www.python.org/ftp/python/'
 url=$prefix$2/Python-$2.tgz
 wget $url

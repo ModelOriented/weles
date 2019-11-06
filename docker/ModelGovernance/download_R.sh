@@ -3,7 +3,9 @@
 # $1 path to install
 # $2 version
 
-export TMPDIR=~/tmp
+cd $1
+
+export TMPDIR=/tmp
 
 prefix="https://cloud.r-project.org/src/base/R-3/R-"
 sufix=".tar.gz"

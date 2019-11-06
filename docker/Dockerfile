@@ -6,15 +6,16 @@ ARG database_password
 ARG python_interpreter="all"
 ARG r_interpreter="all"
 
-RUN echo $database_password
+ENV TZ=Europe
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # UPDATE
 
 RUN apt-get update -y && apt-get upgrade -y
 
-RUN apt-get install sudo -y
+RUN apt-get install -y build-essential
 
-RUN apt-get install -y python3.7
+RUN apt-get install sudo -y python3.7
 
 RUN apt-get install -y zlib1g-dev libssl-dev libbz2-dev liblzma-dev libxml2-dev libcurl4-openssl-dev
 
@@ -63,10 +64,8 @@ RUN apt-get install -y rabbitmq-server
 
 RUN apt-get install -y wget
 
-RUN apt-get install -y gcc make
+RUN apt-get install -y gcc make gfortran fort77 xorg-dev libblas-dev aptitude libreadline-dev gobjc++ gcc-multilib
 RUN apt-get update -y && apt-get upgrade -y
-
-RUN cd /
 
 RUN /bin/bash /SERVER/ModelGovernance/interpreters_installation.sh $python_interpreter $r_interpreter
 

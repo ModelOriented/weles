@@ -1,3 +1,5 @@
+cd /
+
 if [ $1 = "all" ]
 then
 	/bin/bash /SERVER/ModelGovernance/download_all_PYTHON_versions.sh
