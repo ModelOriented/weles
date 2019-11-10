@@ -12,7 +12,7 @@ models.
 
 During the development **weles** is only accessible via MINI network. However you can access it from other places via ssh, if you have account at this network.
 
-![Schema](workflow.png)
+
 
 ## Short description
 
