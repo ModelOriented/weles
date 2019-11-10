@@ -16,10 +16,10 @@
 #' @examples
 #' library("weles")
 #'
-#' datasets_upload(X, 'data name', 'Example user', 'example password')
+#' dataset_upload(X, 'data name', 'Example user', 'example password')
 #'
 #' @export
-datasets_upload = function(data, data_name, data_desc) {
+dataset_upload = function(data, data_name, data_desc) {
 
 	user_name = readline('user: ')
 	password = getPass::getPass('password: ')

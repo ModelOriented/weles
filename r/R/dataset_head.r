@@ -15,10 +15,10 @@
 #' @examples
 #' library("weles")
 #'
-#' datasets_head('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 10)
+#' dataset_head('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 10)
 #'
 #' @export
-datasets_head = function(dataset_id, n=5) {
+dataset_head = function(dataset_id, n=5) {
 
 	# checking input
 	stopifnot(class(dataset_id) == 'character')

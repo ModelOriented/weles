@@ -26,11 +26,11 @@
 #' model = makeLearner("classif.randomForest")
 #' model = train(model, task)
 #'
-#' models_upload(model, "example_model", "This is an example model", 'Species', c('example', 'easy'), iris, "example_training_data", 'This is an example data', 'Example user', 'example password')
+#' model_upload(model, "example_model", "This is an example model", 'Species', c('example', 'easy'), iris, "example_training_data", 'This is an example data')
 #' }
 #'
 #' @export
-models_upload <- function(model, model_name, model_desc, target, tags, train_dataset, train_dataset_name=NA, dataset_desc=NA, requirements_file=NA) {
+model_upload <- function(model, model_name, model_desc, target, tags, train_dataset, train_dataset_name=NA, dataset_desc=NA) {
 
 	user_name = readline('user: ')
 	password = getPass::getPass('password: ')

@@ -1,4 +1,4 @@
-#' @title Get an info about the model in weles
+#' @title Get an info about the dataset in weles
 #'
 #' @description
 #' This tool is used for getting a meta data about the model that is already uploaded to weles.
@@ -14,32 +14,24 @@
 #' @examples
 #' library("weles")
 #'
-#' models_info("example_model")
-#' models_info("example_model")$model
-#' models_info("example_model")$data
-#' models_info("example_model")$data$dataset_id
+#' dataset_info("aaaaaaaaaaaaaaaaaaaaaaa")
+#' dataset_info("aaaaaaaaaaaaaaaaaaaaaaa")$number_of_rows
+#' dataset_info("aaaaaaaaaaaaaaaaaaaaaaa")$number_of_columns
+#' dataset_info("aaaaaaaaaaaaaaaaaaaaaaa")$columns
 #'
 #' @export
-models_info = function(model_name) {
+dataset_info = function(dataset_id) {
 
 	# checking input
-	stopifnot(class(model_name) == 'character')
+	stopifnot(class(dataset_id) == 'character')
+	stopifnot(nchar(dataset_id) == 64)
 
 	# receiving data
-	content = httr::content(httr::GET(url = paste0('http://192.168.137.64/models/', model_name, '/info')))
-
-	# formatting
-	audits = content$audits
-
-	auds = list()
-	for(name in names(audits)) {
-		v = c()
-		v[as.numeric(names(unlist(audits[[name]])))+1] = unlist(audits[[name]])
-		auds[[name]] = v
-	}
+	content = httr::content(httr::GET(url = paste0('http://192.168.137.64/datasets/', dataset_id, '/info')))
 
 	# formatting
 	columns = content$columns
+	content[['columns']] = NULL
 
 	cols = list()
 	for(name in names(columns)) {
@@ -48,9 +40,6 @@ models_info = function(model_name) {
 		cols[[name]] = v
 	}
 
-	# formatting
-	aliases = content$aliases
-
 	als = list()
 	for(name in names(aliases)) {
 		v = c()
@@ -58,6 +47,6 @@ models_info = function(model_name) {
 		als[[name]] = v
 	}
 
-	# return	
-	list(model = content$model, data = content$data, audits = data.frame(auds), columns = data.frame(cols), aliases = data.frame(als))
+	# return
+	list(data = content, columns = data.frame(cols), aliases = data.frame(als))
 }

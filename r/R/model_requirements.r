@@ -14,11 +14,11 @@
 #' @examples
 #' library("weles")
 #'
-#' models_requirements("example_model")
-#' models_requirements("example_model")$pandas
+#' model_requirements("example_model")
+#' model_requirements("example_model")$pandas
 #'
 #' @export
-models_requirements = function(model) {
+model_requirements = function(model) {
 
 	# checking input
 	stopifnot(class(model) == 'character')

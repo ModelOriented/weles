@@ -14,11 +14,11 @@
 #' \code{
 #' library("weles")
 #'
-#' users_create("Example user", "example password", "example_mail@gmail.com")
+#' user_create("Example user", "example password", "example_mail@gmail.com")
 #' }
 #'
 #' @export
-users_create = function() {
+user_create = function() {
 
     mail = readline('mail: ')
 	user_name = readline('user: ')

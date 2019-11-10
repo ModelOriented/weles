@@ -12,12 +12,12 @@
 #' @examples
 #' library("weles")
 #'
-#' models_status("aaaaaaaaaaaaaaaaaaaaaaaaa")
-#' models_status("aaaaaaaaaaaaaaaaaaaaaaaaa")$model_existed
-#' models_status("aaaaaaaaaaaaaaaaaaaaaaaaa", interactive = FALSE)
+#' model_status("aaaaaaaaaaaaaaaaaaaaaaaaa")
+#' model_status("aaaaaaaaaaaaaaaaaaaaaaaaa")$model_existed
+#' model_status("aaaaaaaaaaaaaaaaaaaaaaaaa", interactive = FALSE)
 #'
 #' @export
-models_status = function(task_id, interactive=TRUE) {
+model_status = function(task_id, interactive=TRUE) {
 
 	# url
 	url = paste0('http://192.168.137.64/models/status/', task_id)

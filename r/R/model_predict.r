@@ -17,11 +17,11 @@
 #' \code {
 #' library("weles")
 #'
-#' models_predict("example_model", iris[,-5])
+#' model_predict("example_model", iris[,-5])
 #' }
 #'
 #' @export
-models_predict <- function(model_name, X, pred_type = 'exact', prepare_columns = TRUE) {
+model_predict <- function(model_name, X, pred_type = 'exact', prepare_columns = TRUE) {
 
 	# checking input
 	stopifnot(class(model_name) == 'character')

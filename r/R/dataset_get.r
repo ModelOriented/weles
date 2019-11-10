@@ -1,7 +1,7 @@
 #' @title Get the dataset from weles
 #'
 #' @description
-#' You can use this function to download the dataset from weles as a data frame
+#' You can use this function to download the dataset from weles as a data frame right into your R session
 #'
 #' @param dataset_id hash of the dataset
 #'
@@ -14,10 +14,10 @@
 #' @examples
 #' library("weles")
 #'
-#' datasets_get('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+#' dataset_get('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 #'
 #' @export
-datasets_get = function(dataset_id) {
+dataset_get = function(dataset_id) {
 
 	# checking input
 	stopifnot(class(dataset_id) == 'character')

@@ -23,18 +23,18 @@
 #' \code{
 #' library("weles")
 #'
-#' models_search(tags = c('example', 'easy'))
+#' model_search(tags = c('example', 'easy'))
 #'
-#' models_search(row='<15000;', tags = c('example', 'easy'))
+#' model_search(row='<15000;', tags = c('example', 'easy'))
 #'
-#' models_search(column='>10;<15;', owner='Example user')
+#' model_search(column='>10;<15;', owner='Example user')
 #'
-#' models_search(language='python', language_version='3.6.8', row='>1000;<10000;', column='=14;', classes='=2;', missing='=0;', owner='Example user', tags=
+#' model_search(language='python', language_version='3.6.8', row='>1000;<10000;', column='=14;', classes='=2;', missing='=0;', owner='Example user', tags=
 #'c('example', 'easy'), regex='^R')
 #' }
 #'
 #' @export
-models_search = function(language=NA, language_version=NA, row=NA, column=NA, missing=NA, classes=NA, owner=NA, tags=c(), regex=NA) {
+model_search = function(language=NA, language_version=NA, row=NA, column=NA, missing=NA, classes=NA, owner=NA, tags=c(), regex=NA) {
 
 	stopifnot(is.na(language) || class(language) == 'character')
 	stopifnot(is.na(language_version) || class(language_version) == 'character')

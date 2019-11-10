@@ -20,12 +20,12 @@
 #' \code{
 #' library("weles")
 #'
-#' models_audit('example_model', 'mae', 'Example user', 'example password', iris, 'Species', 'iris', 'Flowers')
-#' models_audit('example_model', 'acc', 'Example user', 'example password', 'aaaaaaaaaaaaaaaaaaaaaaaaaa', 'Species')
+#' model_audit('example_model', 'mae', 'Example user', 'example password', iris, 'Species', 'iris', 'Flowers')
+#' model_audit('example_model', 'acc', 'Example user', 'example password', 'aaaaaaaaaaaaaaaaaaaaaaaaaa', 'Species')
 #' }
 #'
 #' @export
-models_audit = function(model_name, measure, data, target, data_name=NA, data_desc=NA) {
+model_audit = function(model_name, measure, data, target, data_name=NA, data_desc=NA) {
 
 	user = readline('user: ')
 	password = getPass::getPass('password: ')
