@@ -1,1 +1,1 @@
-(numpy|scikit-learn|scipy|sklearn|keras|pandas)
+(numpy|scikit-learn|tensorflow|scipy|sklearn|Keras|keras|pandas)
