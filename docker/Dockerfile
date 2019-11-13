@@ -17,6 +17,8 @@ RUN apt-get install -y build-essential
 
 RUN apt-get install sudo -y python3.7
 
+RUN apt-get update -y && apt-get upgrade -y
+
 RUN apt-get install -y zlib1g-dev libssl-dev libbz2-dev liblzma-dev libxml2-dev libcurl4-openssl-dev
 
 RUN apt-get update -y && apt-get upgrade -y
