@@ -131,9 +131,9 @@ model.audit('model_name', 'acc', path_to_data, 'target_column', 'new_data', 'new
 You can upload data alone of course.
 
 ```
-from weles import datasets
+from weles import dataset
 
-datasets.upload(data, 'name_of_the_data', 'short description of the dataset')
+dataset.upload(data, 'name_of_the_data', 'short description of the dataset')
 ```
 
 ## Getting data
@@ -141,8 +141,8 @@ datasets.upload(data, 'name_of_the_data', 'short description of the dataset')
 Or download dataset from the **weles**
 
 ```
-datasets.get(data_hash)
-datasets.head(data_hash)
+dataset.get(data_hash)
+dataset.head(data_hash)
 
-datasets.get(model.info('example_model')['data']['dataset_id'])
+dataset.get(model.info('example_model')['data']['dataset_id'])
 ```
