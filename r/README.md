@@ -6,7 +6,7 @@ To upload your model you need to create your account.
 ```
 library(weles)
 
-users_create()
+user_create()
 ```
 
 In response you will get information if your account was created succesfully.
@@ -28,10 +28,10 @@ To upload the model to the base you need to import client package and pass class
 ```
 library('weles')
 
-models_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), iris, 'example_data', 'This is an example data')
-models_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), data_hash)
-models_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), data_hash, 'example_data', 'This is an example data')
-models_upload(path_to_model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), path_to_data, 'example_data', 'This is an example data')
+model_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), iris, 'example_data', 'This is an example data')
+model_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), data_hash)
+model_upload(model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), data_hash, 'example_data', 'This is an example data')
+model_upload(path_to_model, 'example_model', 'This is an example model.', 'Species', c('example', 'easy'), path_to_data, 'example_data', 'This is an example data')
 ```
 
 In this moment *model* is being uploaded to the **weles**. If requested environment had not been already created in the **weles**, it will be created. You will receive special *id*, that you can pass to the function *status* to check the progress of the uploading.
@@ -39,8 +39,8 @@ In this moment *model* is being uploaded to the **weles**. If requested environm
 ### Status
 
 ```
-models_status(id)
-models_status(id, interactive=FALSE)
+model_status(id)
+model_status(id, interactive=FALSE)
 ```
 
 ### Summary
@@ -56,10 +56,10 @@ If you want to read an info about the model already uploaded in **weles** you ca
 ```
 library('weles')
 
-models_info("example_model")
-models_info("example_model")$columns
-models_info("example_model")$audits
-models_info("example_model")$data$dataset_id
+model_info("example_model")
+model_info("example_model")$columns
+model_info("example_model")$audits
+model_info("example_model")$data$dataset_id
 ```
 
 *"example_model"* is a name of **weles** model.
@@ -73,8 +73,8 @@ If you want to make a prediction, type:
 ```
 library('weles')
 
-models_predict("example_model", data)
-models_predict("example_model", data, prepare_columns=FALSE)
+model_predict("example_model", data)
+model_predict("example_model", data, prepare_columns=FALSE)
 ```
 
 *"example_model"* is the name of **weles** model, *data* is the data frame with named columns without target column, or path to *.csv* (must contain **/** sign) file or *hash* of already uploaded data.
@@ -82,7 +82,7 @@ models_predict("example_model", data, prepare_columns=FALSE)
 Be aware that some models may require from you exactly the same column names in passed data. If you passed data as an object then column names will be fetched by default. If you do not want this behaviour pass as argument *prepare_data* value *False*. You may also easily manually obtain columns with:
 
 ```
-columns <- models_info("example_model")$columns
+columns <- model_info("example_model")$columns
 ```
 
 ## Searching for model
@@ -94,7 +94,7 @@ Just type:
 ```
 library(weles)
 
-models_search(row = '>1000;<10000;', column='=12;', user='Example user', tags = c('example', 'easily'))
+model_search(row = '>1000;<10000;', column='=12;', user='Example user', tags = c('example', 'easily'))
 ```
 
 You will receive in response all models with at least one of these tags.
@@ -104,22 +104,22 @@ You will receive in response all models with at least one of these tags.
 You can also test already uploaded model.
 
 ```
-models_audit('model_name', 'acc', 'target_column', new_data, 'new_test_data', 'new data for testing')
-models_audit('model_name', 'mse', 'target_column', data_hash)
+model_audit('model_name', 'acc', 'target_column', new_data, 'new_test_data', 'new data for testing')
+model_audit('model_name', 'mse', 'target_column', data_hash)
 ```
 ## Uploading data
 
 You can upload data alone of course.
 
 ```
-datasets_upload(data, 'name_of_the_data', 'short description of the data')
+dataset_upload(data, 'name_of_the_data', 'short description of the data')
 ```
 
 ## Getting data
 
 ```
-datasets_get(data_hash)
-datasets_head(data_hash)
+dataset_get(data_hash)
+dataset_head(data_hash)
 
-dataset_get(models_info('example_model')$data$dataset_id)
+dataset_get(model_info('example_model')$data$dataset_id)
 ```
