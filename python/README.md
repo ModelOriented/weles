@@ -4,9 +4,9 @@
 To be able to upload your model you need to have an account on **weles**. So here is what you need to do:
 
 ```
-from weles import users
+from weles import user
 
-users.create()
+user.create()
 ```
 
 You will receive information if your account was created correctly.
@@ -46,12 +46,12 @@ This will make a *Python* style requirements file.
 Now we are ready to push our model to the base. Its name has to be unique in the base. Dataset name either.
 
 ```
-from weles import models
+from weles import model
 
-models.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], train_data_to_upload, 'example_data', 'This is an example dataset', 'requirements.txt')
-models.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], data_hash, None, None, 'requirements.txt')
-models.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], data_hash, 'example_data', 'This is an example dataset', 'requirements.txt')
-models.upload(path_to_model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], data_hash, None, None, 'requirements.txt')
+model.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], train_data_to_upload, 'example_data', 'This is an example dataset', 'requirements.txt')
+model.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], data_hash, None, None, 'requirements.txt')
+model.upload(model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], data_hash, 'example_data', 'This is an example dataset', 'requirements.txt')
+model.upload(path_to_model, 'example_model', 'This is an example model.', 'target', ['example', 'easy'], data_hash, None, None, 'requirements.txt')
 ```
 
 In this moment *model* is being uploaded to the **weles**. If requested environment had not been already created in the **weles**, it will be created. You do not have to wait for its creation. You will receive special *id*, that you can pass to the function *status* to check the progress of the uploading.
@@ -59,8 +59,8 @@ In this moment *model* is being uploaded to the **weles**. If requested environm
 ### Status
 
 ```
-models.status(id)
-models.status(id, interactive=False)
+model.status(id)
+model.status(id, interactive=False)
 ```
 
 ### Summary
@@ -72,12 +72,12 @@ You can also pass your model as the path (must contain **/** sign) to *Python* p
 If you want to read an info about the model already uploaded in **weles** you can run:
 
 ```
-from weles import models
+from weles import model
 
-models.info("example_model")
-models.info("example_model")['columns']
-models.info("example_model")['audits']
-models.info("example_model")['data']['dataset_id']
+model.info("example_model")
+model.info("example_model")['columns']
+model.info("example_model")['audits']
+model.info("example_model")['data']['dataset_id']
 ```
 
 *"example_model"* is a name of **weles** model.
@@ -89,10 +89,10 @@ Returned value is a *Python* dictionary containing all information about the mod
 If you want to make a prediction, type:
 
 ```
-from weles import models
+from weles import model
 
-models.predict("example_model", data)
-models.predict("example_model", data, prepare_columns=False)
+model.predict("example_model", data)
+model.predict("example_model", data, prepare_columns=False)
 ```
 
 *"example_model"* is the name of **weles** model, *data* is the data frame with named columns without target column, or path to *.csv* (must contain **/** sign) file or *hash* of already uploaded data.
@@ -100,17 +100,17 @@ models.predict("example_model", data, prepare_columns=False)
 Be aware that some models may require from you exactly the same column names in passed data. If you are passing data as an object then by default columns are fetched from original dataset. If you do not want this behaviour set *prepare_data* to *False*. You may easily manually obtain columns with:
 
 ```
-columns = models.info("example_model")['columns']
+columns = model.info("example_model")['columns']
 ```
 
 ## Searching model
 
-You can also search models in **weles** satisfying some restrictions.
+You can also search model in **weles** satisfying some restrictions.
 
 ```
-from weles import models
+from weles import model
 
-models.search(row = '>1000;<10000;', column='=12;', user='Example user', tags = ['example', 'easy'])
+model.search(row = '>1000;<10000;', column='=12;', user='Example user', tags = ['example', 'easy'])
 ```
 
 You will get list of all models satisfying your restrictions.
@@ -120,10 +120,10 @@ You will get list of all models satisfying your restrictions.
 You can also test already uploaded model on some new data.
 
 ```
-models.audit('model_name', 'acc', new_data, 'target_column', 'new_data', 'new data for testing')
-models.audit('model_name', 'acc', data_hash, 'target_column')
-models.audit('model_name', 'acc', data_hash, 'target_column', 'new_data', 'new data for testing')
-models.audit('model_name', 'acc', path_to_data, 'target_column', 'new_data', 'new data for testing')
+model.audit('model_name', 'acc', new_data, 'target_column', 'new_data', 'new data for testing')
+model.audit('model_name', 'acc', data_hash, 'target_column')
+model.audit('model_name', 'acc', data_hash, 'target_column', 'new_data', 'new data for testing')
+model.audit('model_name', 'acc', path_to_data, 'target_column', 'new_data', 'new data for testing')
 ```
 
 ## Uploading data
@@ -144,5 +144,5 @@ Or download dataset from the **weles**
 datasets.get(data_hash)
 datasets.head(data_hash)
 
-datasets.get(models.info('example_model')['data']['dataset_id'])
+datasets.get(model.info('example_model')['data']['dataset_id'])
 ```
